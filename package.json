@@ -1,9 +1,14 @@
 {
-  "name": "js-study",
+  "name": "codeit-js-study",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "practice": "node practice.js"
+    "format": "prettier . --write"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
   }
 }
