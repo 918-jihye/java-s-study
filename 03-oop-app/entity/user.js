@@ -14,10 +14,10 @@ export default class User extends BaseEntity {
   toCSV() {
     return `${this.#email},${this.#password},${this.#nickname}`;
   }
-  getEmail() {
+  get email() {
     return this.#email;
   }
-  getNickname() {
+  get nickname() {
     return this.#nickname;
   }
   checkPasswordMath(inputPassword) {
