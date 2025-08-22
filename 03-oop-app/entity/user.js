@@ -11,7 +11,7 @@ export default class User extends BaseEntity {
     this.#password = password;
     this.#nickname = nickname;
   }
-  toCSVData() {
+  toCSV() {
     return `${this.#email},${this.#password},${this.#nickname}`;
   }
   getEmail() {
