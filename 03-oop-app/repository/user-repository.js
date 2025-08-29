@@ -18,6 +18,6 @@ export default class UserRepository extends BaseRepository {
     return users;
   }
   addUser(user) {
-    this.fileManager.write(this.fileSource, user.toCSVData());
+    this.fileManager.write(this.fileSource, user.toCSV());
   }
 }

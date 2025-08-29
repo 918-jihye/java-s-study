@@ -1,14 +1,18 @@
 export default class App {
   #authScreen;
+  #memoScreen;
 
-  constructor(authScreen) {
+  constructor(authScreen, memoScreen) {
     this.#authScreen = authScreen;
+    this.#memoScreen = memoScreen;
   }
   run() {
+    let me =null;
+    // 로그인
     while (true) {
       const choice = this.#authScreen.openAuthUI();
       if (choice === 1) {
-        const me = this.#authScreen.openSignInUI();
+        me = this.#authScreen.openSignInUI();
         if (me !== null) {
           break;
         }
@@ -18,13 +22,23 @@ export default class App {
         process.exit(0);
       } else {
         this.#authScreen.openInvalidInputUI();
-        continue;
       }
     }
-
-    console.log("========== Main Screen ==========");
-    console.log(
-      "[1]. 메모 생성, [2]. 메모 불러오기, [3]. 로그아웃, [4]. 종료: ",
-    );
+    while (true) {
+      const choice = this.#memoScreen.openMainUI();
+      if (choice === 1) {
+      this.#memoScreen.openCreateMemoUI(me);
+      } else if (choice === 2) {
+        this.#memoScreen.openMemosUI(me);
+      } else if (choice === 3) {
+        break;
+      } else if  (choice === 4) {
+        process.exit(0);
+      } else {
+        console.log("\t입력 잘못되었습니다.")
+      }
+      
+    }
+    
   }
 }

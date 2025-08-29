@@ -1,16 +1,22 @@
 import App from "./app.js";
 import CSVFileManager from "./file-manager/csv-file-manager.js";
 import UserRepository from "./repository/user-repository.js";
+import MemoRepository from "./repository/memo-repository.js"
+import MemoService from "./service/memo-service.js";
 import AuthService from "./service/auth-service.js";
+import MemoScreen from "./ui/memo-screen.js";
 import AuthScreen from "./ui/auth-screen.js";
 import config from "./config.js";
 
 // 의존성 주입
 const csvFileManager = new CSVFileManager();
 const userRepository = new UserRepository(csvFileManager, config);
+const memoRepository = new MemoRepository(csvFileManager, config);
 const authService = new AuthService(userRepository);
+const memoService = new MemoService(memoRepository)
 const authScreen = new AuthScreen(authService);
-const app = new App(authScreen);
+const memoScreen = new MemoScreen(memoService);
+const app = new App(authScreen, memoScreen);
 
 app.run();
 

@@ -20,7 +20,7 @@ export default class User extends BaseEntity {
   get nickname() {
     return this.#nickname;
   }
-  checkPasswordMath(inputPassword) {
+  checkPasswordMatch(inputPassword) {
     if (this.#password === inputPassword) {
       return true;
     } else {

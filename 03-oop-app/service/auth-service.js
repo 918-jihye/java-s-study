@@ -13,10 +13,10 @@ export default class AuthService {
     for (let i = 0; i < users.length; i++) {
       const user = users[i];
       if (
-        user.getEmail() === inputEmail &&
-        user.checkPasswordMath(inputPassword)
+        user.email === inputEmail &&
+        user.checkPasswordMatch(inputPassword)
       ) {
-        return new SignInRes(user.getEmail(), user.getNickname());
+        return new SignInRes(user.email, user.nickname);
       }
     }
 
@@ -25,7 +25,7 @@ export default class AuthService {
   signUp(inputEmail, inputPassword, inputNickname) {
     const users = this.#userRepository.getAllUsers();
     for (let i = 0; i < users.length; i++) {
-      if (users[i].getEmail() === inputEmail) {
+      if (users[i].email === inputEmail) {
         return false;
       }
     }
